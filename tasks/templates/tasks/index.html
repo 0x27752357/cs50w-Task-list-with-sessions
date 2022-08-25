@@ -1,13 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-
-    </head>
-    <body>
+{% extends 'tasks/layout.html' %}
+{% block body %}
+        <h1 style="font-family: monospace;">Tasks</h1>
         <ul>
             {% for i in tasks %}
-                <li>{{ i }}</li>
+                <li style="font-family: monospace;">{{ i }}</li>
             {% endfor %} 
         </ul>
-    </body>
-</html>
+        <a href="{% url 'add' %}">Add New Task</a>
+{% endblock  %}        

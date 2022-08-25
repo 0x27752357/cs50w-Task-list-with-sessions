@@ -4,7 +4,10 @@
         <ul>
             {% for i in tasks %}
                 <li style="font-family: monospace;">{{ i }}</li>
+            {% empty %}
+                <li>Such Nothingness</li>
             {% endfor %} 
+
         </ul>
         <a href="{% url 'add' %}">Add New Task</a>
 {% endblock  %}        

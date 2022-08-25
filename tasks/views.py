@@ -11,8 +11,10 @@ class NewTaskForm(forms.Form) :
 Tasks = []
 
 def index(request) :
+    if "Tasks" not in request.session :
+        request.session["Tasks"] = []
     return render(request , "tasks/index.html",{
-        "tasks" : Tasks
+        "tasks" : request.session["Tasks"]
     })
 
 def add(request) : 
@@ -20,7 +22,7 @@ def add(request) :
         form = NewTaskForm(request.POST)
         if form.is_valid() : 
             task = form.cleaned_data["task"]
-            Tasks.append(task)
+            request.session["Tasks"] += [task]
             return HttpResponseRedirect(reverse("index"))
         else : 
             return render(request , "tasks/add.html" , {
